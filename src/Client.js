@@ -54,6 +54,11 @@ function Client(credentials) {
     return cli;
   };
 
+  cli.on('voiceSwitch', function (oldChannel, channel, user) {
+    this.sendMessage(cli.channels.getAll('name', 'shitpost')[0],
+      user.username + ' moved from ' + oldChannel.name + ' to ' + channel.name + '.');
+  });
+
   cli.on('ready', function () {
     console.log(cli.user.username + ' - (' + cli.user.id + ')');
   });
