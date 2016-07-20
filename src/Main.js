@@ -27,7 +27,11 @@ process.on('uncaughtException', function (err) {
 });
 
 process.on('exit', function () {
-  App.botClient.getDiscordClient().disconnect();
+  App.botClient.getDiscordClient().destroy();
+});
+
+process.on('SIGINT', function () {
+  process.exit();
 });
 
 //--------------------------------------
