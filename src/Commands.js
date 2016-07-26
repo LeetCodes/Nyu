@@ -105,9 +105,9 @@ module.exports = function () {
 
   var purgereqlist = {
     keyword: '!purgereqlist',
-    description: '(Merg-only) cleans song que',
+    description: '(Admin-only) cleans song que',
     exec: function (payload) {
-      if (payload.raw.author.username !== 'Merg') return;
+      if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
 
       App.SongQue.emptyQue();
     }
@@ -136,9 +136,9 @@ module.exports = function () {
 
   var exec = {
     keyword: '!exec',
-    description: '(Merg-only) Executes javascript code',
+    description: '(Admin-only) Executes javascript code',
     exec: function (payload) {
-      if (payload.raw.author.username !== 'Merg') return;
+      if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
       try {
         /* jshint ignore:start */
         return eval(payload.parameter);
@@ -185,6 +185,15 @@ module.exports = function () {
     }
   };
 
+  var uptime = {
+    keyword: '!uptime',
+    description: 'Shows how long the bot has been running.',
+    exec: function() {
+      var uptime_ms = new Date() - App.startTime;
+      return (uptime_ms / (1000 * 60 * 60 * 24)) + " days";
+    }
+  };
+
   cm.registerCommand(kappa);
   cm.registerCommand(serverlist);
   cm.registerCommand(emote);
@@ -200,4 +209,5 @@ module.exports = function () {
   cm.registerCommand(help);
   cm.registerCommand(webshot);
   cm.registerCommand(d2gamerep);
+  cm.registerCommand(uptime);
 };

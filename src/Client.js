@@ -1,10 +1,10 @@
 var Discord = require('discord.js');
-function Client(credentials) {
+function Client() {
   var options = {
     autoReconnect: true
   };
   var cli = new Discord.Client(options);
-  cli.loginWithToken(App.credentials.discordToken);
+  cli.loginWithToken(App.config.discordToken);
   var messageListeners = [];
 
   this.joinChannel = function (voiceChannel) {

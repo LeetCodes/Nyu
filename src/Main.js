@@ -10,7 +10,7 @@ var commands = require('./Commands.js');
 var d2gamerep = require('./commands/dota2gamereport.js');
 
 require('fs').readFile('creds', 'utf8', function (err, data) {
-  App.credentials = JSON.parse(data);
+  App.config = JSON.parse(data);
   init();
 });
 
@@ -45,6 +45,7 @@ function init() {
   App.Weather = new WQ();
   App.Emotes = new emotes();
   App.D2GameReports = new d2gamerep();
+  App.startTime = new Date();
 
   // Create commands
   commands();
