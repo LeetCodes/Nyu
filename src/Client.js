@@ -55,7 +55,7 @@ function Client() {
   };
 
   cli.on('voiceSwitch', function (oldChannel, channel, user) {
-    this.sendMessage(cli.channels.getAll('name', 'shitpost')[0],
+    this.sendMessage(cli.channels.getAll('name', 'daddys_cummies')[0],
       user.username + ' moved from ' + oldChannel.name + ' to ' + channel.name + '.');
   });
 
