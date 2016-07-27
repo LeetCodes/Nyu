@@ -11,7 +11,7 @@ function main(url) {
 
   var ytdlStream = null;
   try {
-    ytdlStream = ytdl(url, {quality: 140});
+    ytdlStream = ytdl(url, {quality: 18});
   } catch (e) { console.log(e); }
 
   ytdlStream.on('error', function(e) {
@@ -27,9 +27,8 @@ function main(url) {
     audioContext.playRawStream(ytdlStream, { volume: 0.1 }); else onEndFunc();
 
   this.release = function () {
-    ytdlStream.end();
     audioContext.stopPlaying();
-    if (ytdlStream.destroy) ytdlStream.destroy();
+    ytdlStream.destroy();
   };
 }
 
