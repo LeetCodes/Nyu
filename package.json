@@ -4,7 +4,7 @@
   "description": "Bot that plays music and whatnot",
   "main": "src/script.js",
   "scripts": {
-    "start": "node src/Main.js"
+    "start": "node launcher.js"
   },
   "author": "",
   "license": "ISC",

@@ -24,7 +24,11 @@ function Client() {
 
   this.sendMessage = function (rawEvent, message) {
     if(message.length === 0) return;
-    cli.sendMessage(rawEvent, '```' + message + '```');
+
+    if (message.length > 10)
+      cli.sendMessage(rawEvent, '```' + message + '```');
+    else
+      cli.sendMessage(rawEvent, message);
   };
 
   this.sendFile = function (rawEvent, file) {
@@ -55,7 +59,7 @@ function Client() {
   };
 
   cli.on('voiceSwitch', function (oldChannel, channel, user) {
-    this.sendMessage(cli.channels.getAll('name', 'daddys_cummies')[0],
+    this.sendMessage(cli.channels.getAll('id', '207493716661895179')[0],
       user.username + ' moved from ' + oldChannel.name + ' to ' + channel.name + '.');
   });
 

@@ -3,11 +3,11 @@ GLOBAL.App = {};
 
 var Client = require('./Client.js');
 var CommandManager = require('./CommandManager.js');
-var sq = require('./commands/songrequests/SongQueue.js');
-var WQ = require('./commands/weather.js');
-var emotes = require('./commands/emotes.js');
+var SongQue = require('./commands/songrequests/SongQueue.js');
+var WeatherQuery = require('./commands/weather.js');
+var EmoteQuery = require('./commands/emotes.js');
 var commands = require('./Commands.js');
-var d2gamerep = require('./commands/dota2gamereport.js');
+var Dota2GameReport = require('./commands/dota2gamereport.js');
 
 require('fs').readFile('creds', 'utf8', function (err, data) {
   App.config = JSON.parse(data);
@@ -41,10 +41,10 @@ function init() {
   // Init some shit
   App.botClient = new Client();
   App.commandManager = new CommandManager();
-  App.SongQue = new sq();
-  App.Weather = new WQ();
-  App.Emotes = new emotes();
-  App.D2GameReports = new d2gamerep();
+  App.SongQue = new SongQue();
+  App.Weather = new WeatherQuery();
+  App.Emotes = new EmoteQuery();
+  App.D2GameReports = new Dota2GameReport();
   App.startTime = new Date();
 
   // Create commands

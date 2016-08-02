@@ -98,7 +98,7 @@ module.exports = function () {
         for (var i = 0; i < q.length; i++) {
           resStr += '\n' + (i + 1) + '. ' + q[i].title;
         }
-        return resStr;
+        App.botClient.sendMessage(payload.raw, resStr);
       }
     }
   };
@@ -127,7 +127,7 @@ module.exports = function () {
 
       try {
         App.SongQue.addToQueue(payload.parameter);
-        return 'youre song has been add xDDD (' + App.SongQue.getQueue().length + ')';
+        return '👌 (' + App.SongQue.getQueue().length + ')';
       } catch (e) {
         console.log(e);
       }
@@ -167,11 +167,11 @@ module.exports = function () {
     exec: function (payload) {
       var stream = require('webshot')(payload.parameter);
       var chunks = [];
-      stream.on('data', function(data) {
+      stream.on('data', function (data) {
         chunks.push(data);
       });
 
-      stream.on('end', function() {
+      stream.on('end', function () {
         App.botClient.sendFile(payload.raw, Buffer.concat(chunks));
       });
     }
@@ -188,11 +188,35 @@ module.exports = function () {
   var uptime = {
     keyword: '!uptime',
     description: 'Shows how long the bot has been running.',
-    exec: function() {
+    exec: function (payload) {
       var uptime_ms = new Date() - App.startTime;
       return (uptime_ms / (1000 * 60 * 60 * 24)) + " days";
     }
   };
+
+  var volume = {
+    keyword: '!volume',
+    description: '(Admin-only) Sets playback volume.',
+    exec: function (payload) {
+      if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
+      if (App.botClient.getAudioContext()) {
+        App.botClient.getAudioContext().setVolume(payload.parameter);
+        return "👌";
+      }
+    }
+  };
+
+  var update = {
+    keyword: '!update',
+    description: 'Pulls shit from github.',
+    exec: function (payload) {
+      if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
+
+      App.botClient.sendMessage(payload.raw,"👌");
+      process.exit();
+    }
+  };
+
 
   cm.registerCommand(kappa);
   cm.registerCommand(serverlist);
@@ -210,4 +234,5 @@ module.exports = function () {
   cm.registerCommand(webshot);
   cm.registerCommand(d2gamerep);
   cm.registerCommand(uptime);
+  cm.registerCommand(volume);
 };

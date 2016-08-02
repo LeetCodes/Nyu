@@ -11,7 +11,7 @@ function main(url) {
 
   var ytdlStream = null;
   try {
-    ytdlStream = ytdl(url, {quality: 18});
+    ytdlStream = ytdl(url, {audioonly: true});
   } catch (e) { console.log(e); }
 
   ytdlStream.on('error', function(e) {
