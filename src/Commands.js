@@ -212,7 +212,7 @@ module.exports = function () {
     exec: function (payload) {
       if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
 
-      App.botClient.sendMessage(payload.raw,"👌");
+      App.botClient.sendMessage(payload.raw,"👌👌");
       process.exit();
     }
   };
