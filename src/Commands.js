@@ -235,4 +235,5 @@ module.exports = function () {
   cm.registerCommand(d2gamerep);
   cm.registerCommand(uptime);
   cm.registerCommand(volume);
+  cm.registerCommand(update);
 };
