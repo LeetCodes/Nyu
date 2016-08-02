@@ -4,7 +4,7 @@ module.exports = function () {
     keyword: '!kappa',
     description: 'Le funny maymay xD',
     exec: function (payload) {
-      return "Kappa " + payload.nick;
+      return "Kappa :gachiGASM: " + payload.nick;
     }
   };
 
