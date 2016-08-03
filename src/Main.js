@@ -1,5 +1,6 @@
 // Global object
 GLOBAL.App = {};
+App.voiceVolume = 0.1;
 
 var Client = require('./Client.js');
 var CommandManager = require('./CommandManager.js');

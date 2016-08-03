@@ -200,6 +200,7 @@ module.exports = function () {
     exec: function (payload) {
       if (App.config.adminUIDs.indexOf(payload.raw.author.id) == -1) return;
       if (App.botClient.getAudioContext()) {
+        App.voiceVolume = Number(payload.parameter);
         App.botClient.getAudioContext().setVolume(payload.parameter);
         return "👌";
       }
