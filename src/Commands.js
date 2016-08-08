@@ -218,6 +218,15 @@ module.exports = function () {
     }
   };
 
+  var disconnect = {
+    keyword: '!disconnect',
+    description: 'Disconnects from the current voice channel.',
+    exec: function (payload) {
+      if(App.botClient.getAudioContext())
+        App.botClient.getAudioContext().destroy();
+    }
+  };
+
 
   cm.registerCommand(kappa);
   cm.registerCommand(serverlist);
@@ -237,4 +246,5 @@ module.exports = function () {
   cm.registerCommand(uptime);
   cm.registerCommand(volume);
   cm.registerCommand(update);
+  cm.registerCommand(disconnect);
 };
