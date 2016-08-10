@@ -23,7 +23,7 @@ module.exports = function () {
       }
       var obj = res.body.query.results.channel;
       var title = '\n' + obj.title;
-      var wind = '\n' + (obj.wind.speed / 3.6) + 'm/s | ' + obj.wind.direction + '°';
+      var wind = '\n' + Math.round(obj.wind.speed / 3.6) + 'm/s | ' + obj.wind.direction + '°';
       obj = res.body.query.results.channel.item;
       var weather = '\n' + obj.condition.date + ' \n\n ' + obj.condition.temp + '°C  ' + obj.condition.text + '\n\n';
       var forecastTitle = '\n\nFORECAST:\n';
