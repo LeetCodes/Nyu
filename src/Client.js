@@ -25,7 +25,7 @@ function Client() {
   this.sendMessage = function (rawEvent, message) {
     if(message.length === 0) return;
 
-    if (message.length > 10)
+    if (message.length > 50)
       cli.sendMessage(rawEvent, '```' + message + '```');
     else
       cli.sendMessage(rawEvent, message);

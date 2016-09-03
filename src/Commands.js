@@ -227,6 +227,17 @@ module.exports = function () {
     }
   };
 
+  var jalluindeksi = {
+    keyword: '!jalluindeksi',
+    description: 'Shows the current price of jaloviina',
+    exec: function(payload) {
+      require('needle').get('http://www.alko.fi/api/find/products?Language=fi&Page=0&PageSize=1&ProductIds=000706&SingleGrape=false&Sort=0', (err, res) => {
+        if(err) return;
+        App.botClient.sendMessage(payload.raw, `** Current Jaloviina price:**  __***${res.body.Results[0].Price}€***__`);
+      });
+    } 
+  };
+
 
   cm.registerCommand(kappa);
   cm.registerCommand(serverlist);
@@ -247,4 +258,5 @@ module.exports = function () {
   cm.registerCommand(volume);
   cm.registerCommand(update);
   cm.registerCommand(disconnect);
+  cm.registerCommand(jalluindeksi);
 };
